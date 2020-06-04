@@ -1,0 +1,56 @@
+name: clock_demo
+description: A clock design project for mesamis.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.2
+  weather: ^1.1.1
+  provider: ^2.0.1+1
+  geolocator: ^5.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# The following section is specific to Flutter.
+flutter:
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+   - assets/images/broken-cloud.png
+   - assets/images/clear-day.png
+   - assets/images/clear-night.png
+   - assets/images/cloudy.png
+   - assets/images/few-cloud-day.png
+   - assets/images/few-cloud-night.png
+   - assets/images/mist.png
+   - assets/images/rain-day.png
+   - assets/images/rain-night.png
+   - assets/images/shower-rain.png
+   - assets/images/snow.png
+   - assets/images/sun-cloudy.png
+   - assets/images/thunderstorm.png
+
+
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Bold.ttf
+        - asset: assets/fonts/Montserrat-BoldItalic.ttf
+          style: italic
+    - family: Avenir
+      fonts:
+        - asset: assets/fonts/Avenir.otf
+          weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
