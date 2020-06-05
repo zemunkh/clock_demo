@@ -6,7 +6,6 @@ import './analog_clock_painter.dart';
 
 class AnalogClock extends StatefulWidget {
   final DateTime datetime;
-  final bool showDigitalClock;
   final bool showTicks;
   final bool showNumbers;
   final bool showAllNumbers;
@@ -25,7 +24,6 @@ class AnalogClock extends StatefulWidget {
 
   const AnalogClock(
       {this.datetime,
-      this.showDigitalClock = true,
       this.showTicks = true,
       this.showNumbers = true,
       this.showSecondHand = true,
@@ -47,7 +45,6 @@ class AnalogClock extends StatefulWidget {
 
   const AnalogClock.dark(
       {datetime,
-      showDigitalClock = true,
       showTicks = true,
       showNumbers = true,
       showAllNumbers = false,
@@ -58,7 +55,6 @@ class AnalogClock extends StatefulWidget {
       Key key})
       : this(
             datetime: datetime,
-            showDigitalClock: showDigitalClock,
             showTicks: showTicks,
             showNumbers: showNumbers,
             showAllNumbers: showAllNumbers,
@@ -116,7 +112,6 @@ class _AnalogClockState extends State<AnalogClock> {
                   child: new CustomPaint(
                     painter: new AnalogClockPainter(
                         datetime: datetime,
-                        showDigitalClock: widget.showDigitalClock,
                         showTicks: widget.showTicks,
                         showNumbers: widget.showNumbers,
                         showAllNumbers: widget.showAllNumbers,

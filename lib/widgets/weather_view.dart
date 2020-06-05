@@ -13,8 +13,8 @@ class _WeatherViewState extends State<WeatherView> {
 
   WeatherStation ws;
   int temperature = 0;
-  String weatherIcon = 'clear';
-  String weatherMain = 'Clear';
+  String weatherIcon = '';
+  String weatherMain = '';
   String url;
   String country = 'USA';
   String city = 'California';
@@ -137,10 +137,13 @@ class _WeatherViewState extends State<WeatherView> {
           });
 
           // print("Location is granted somehow");
+          var iconDir = '';
           Weather weather = await ws.currentWeather(lat, lng);
+          iconDir = _getWeatherIcon(weather.weatherIcon);
+
           setState(() {
             temperature = weather.temperature.celsius.round();
-            imgDir = _getWeatherIcon(weather.weatherIcon);
+            imgDir = iconDir;
             weatherMain = weather.weatherMain;
           });
           print("Weather image: $imgDir");

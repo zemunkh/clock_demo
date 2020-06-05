@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 
 
 class Calendar extends StatefulWidget {
@@ -10,9 +9,9 @@ class Calendar extends StatefulWidget {
 class _CalendarState extends State<Calendar> {
 
   var date = DateTime.now();
-  String month = '1';
-  String day = '1';
-  String weekday = 'Sunday';
+  String month = '';
+  String day = '';
+  String weekday = '';
   List<String> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   List<String> months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
 

@@ -13,7 +13,8 @@ dependencies:
   weather: ^1.1.1
   provider: ^2.0.1+1
   geolocator: ^5.3.1
-
+  intl: ^0.16.1
+  shared_preferences: ^0.5.7
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -51,6 +52,9 @@ flutter:
       fonts:
         - asset: assets/fonts/Avenir.otf
           weight: 700
+    - family: Rubik
+      fonts:
+        - asset: assets/fonts/Rubik-Medium.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

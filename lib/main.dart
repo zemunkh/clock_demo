@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
 import './screens/main_screen.dart';
+import './models/theme.dart';
 
 bool activated = false;
 
@@ -12,18 +14,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) { 
 
+    return ChangeNotifierProvider<ThemeChanger>(
+      builder: (_) => ThemeChanger(ThemeData.dark()),
+      child: new MaterialAppWithTheme(),
+    );
+  }
+}
+
+class MaterialAppWithTheme extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context);
     return MaterialApp(
-        title: 'Mesamis Client App',
-        theme: ThemeData(
-          textTheme: ThemeData.light().textTheme.copyWith(
-            title: TextStyle(
-              fontFamily: 'OpenSans',
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-            ),
-          ),
-        ),
-        home: MainScreen(),
-      );
+      title: 'Mesamis Client App',
+      home: MainScreen(),
+      theme: theme.getTheme(),
+    );
   }
 }

@@ -3,7 +3,6 @@ import 'dart:math';
 
 class AnalogClockPainter extends CustomPainter {
   DateTime datetime;
-  final bool showDigitalClock;
   final bool showTicks;
   final bool showNumbers;
   final bool showAllNumbers;
@@ -25,7 +24,6 @@ class AnalogClockPainter extends CustomPainter {
 
   AnalogClockPainter(
       {@required this.datetime,
-      this.showDigitalClock = true,
       this.showTicks = true,
       this.showNumbers = true,
       this.showSecondHand = true,
@@ -45,7 +43,6 @@ class AnalogClockPainter extends CustomPainter {
     if (showTicks) _paintTickMarks(canvas, size, scaleFactor);
     if (showNumbers) _drawIndicators(canvas, size, scaleFactor);
     if (showAllNumbers) _drawAllIndicators(canvas, size, scaleFactor);
-    if (showDigitalClock) _paintDigitalClock(canvas, size, scaleFactor);
 
     _paintClockHands(canvas, size, scaleFactor);
     _paintPinHole(canvas, size, scaleFactor);
@@ -316,25 +313,5 @@ class AnalogClockPainter extends CustomPainter {
               _getHandOffset(seconds, HAND_PIN_HOLE_SIZE * scaleFactor)),
           size.center(_getHandOffset(seconds, longHandLength)),
           handPaint..color = secondHandColor);
-  }
-
-  void _paintDigitalClock(Canvas canvas, Size size, double scaleFactor) {
-    String hour = datetime.hour.toString().padLeft(2, "0");
-    String minute = datetime.minute.toString().padLeft(2, "0");
-    String second = datetime.second.toString().padLeft(2, "0");
-    TextSpan digitalClockSpan = new TextSpan(
-        style: TextStyle(
-            color: digitalClockColor,
-            fontSize: 18 * scaleFactor * textScaleFactor),
-        text: "$hour:$minute:$second");
-    TextPainter digitalClockTP = new TextPainter(
-        text: digitalClockSpan,
-        textAlign: TextAlign.center,
-        textDirection: TextDirection.ltr);
-    digitalClockTP.layout();
-    digitalClockTP.paint(
-        canvas,
-        size.center(
-            -digitalClockTP.size.center(Offset(0.0, -size.shortestSide / 6))));
   }
 }
