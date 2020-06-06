@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import './digital_clock_painter.dart';
 
@@ -86,8 +85,8 @@ class _DigitalClockState extends State<DigitalClock> {
               final borderWidth =
                   constraints.biggest.width * 0.03;
               return Container(
-                color: Colors.white,
                 decoration: BoxDecoration(
+                  color: Colors.white,
                   borderRadius:
                       BorderRadius.circular(borderRadius),
                   border: Border.all(

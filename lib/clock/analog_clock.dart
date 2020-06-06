@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import './analog_clock_painter.dart';
 
@@ -14,7 +13,6 @@ class AnalogClock extends StatefulWidget {
   final Color minuteHandColor;
   final Color secondHandColor;
   final Color tickColor;
-  final Color digitalClockColor;
   final Color numberColor;
   final bool isLive;
   final double textScaleFactor;
@@ -32,7 +30,6 @@ class AnalogClock extends StatefulWidget {
       this.minuteHandColor = Colors.black,
       this.secondHandColor = Colors.redAccent,
       this.tickColor = Colors.grey,
-      this.digitalClockColor = Colors.black,
       this.numberColor = Colors.black,
       this.textScaleFactor = 1.0,
       this.width = 320,
@@ -45,6 +42,7 @@ class AnalogClock extends StatefulWidget {
 
   const AnalogClock.dark(
       {datetime,
+      showDigitalClock = true,
       showTicks = true,
       showNumbers = true,
       showAllNumbers = false,
@@ -65,7 +63,6 @@ class AnalogClock extends StatefulWidget {
             minuteHandColor: Colors.white,
             secondHandColor: Colors.redAccent,
             tickColor: Colors.grey,
-            digitalClockColor: Colors.white,
             numberColor: Colors.white,
             decoration: decoration,
             key: key);
@@ -104,26 +101,29 @@ class _AnalogClockState extends State<AnalogClock> {
       height: widget.height,
       decoration: widget.decoration,
       child: Center(
-          child: AspectRatio(
-              aspectRatio: 1.0,
-              child: new Container(
-                  constraints: BoxConstraints(minWidth: 48.0, minHeight: 48.0),
-                  width: double.infinity,
-                  child: new CustomPaint(
-                    painter: new AnalogClockPainter(
-                        datetime: datetime,
-                        showTicks: widget.showTicks,
-                        showNumbers: widget.showNumbers,
-                        showAllNumbers: widget.showAllNumbers,
-                        showSecondHand: widget.showSecondHand,
-                        hourHandColor: widget.hourHandColor,
-                        minuteHandColor: widget.minuteHandColor,
-                        secondHandColor: widget.secondHandColor,
-                        tickColor: widget.tickColor,
-                        digitalClockColor: widget.digitalClockColor,
-                        textScaleFactor: widget.textScaleFactor,
-                        numberColor: widget.numberColor),
-                  )))),
+        child: AspectRatio(
+          aspectRatio: 1.0,
+          child: new Container(
+            constraints: BoxConstraints(minWidth: 48.0, minHeight: 48.0),
+            width: double.infinity,
+            child: new CustomPaint(
+              painter: new AnalogClockPainter(
+                datetime: datetime,
+                showTicks: widget.showTicks,
+                showNumbers: widget.showNumbers,
+                showAllNumbers: widget.showAllNumbers,
+                showSecondHand: widget.showSecondHand,
+                hourHandColor: widget.hourHandColor,
+                minuteHandColor: widget.minuteHandColor,
+                secondHandColor: widget.secondHandColor,
+                tickColor: widget.tickColor,
+                textScaleFactor: widget.textScaleFactor,
+                numberColor: widget.numberColor
+              )
+            )
+          )
+        )
+      ),
     );
   }
 }

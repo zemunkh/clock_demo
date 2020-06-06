@@ -11,7 +11,6 @@ class AnalogClockPainter extends CustomPainter {
   final Color minuteHandColor;
   final Color secondHandColor;
   final Color tickColor;
-  final Color digitalClockColor;
   final Color numberColor;
   final double textScaleFactor;
 
@@ -31,7 +30,6 @@ class AnalogClockPainter extends CustomPainter {
       this.minuteHandColor = Colors.black,
       this.secondHandColor = Colors.redAccent,
       this.tickColor = Colors.grey,
-      this.digitalClockColor = Colors.black,
       this.numberColor = Colors.black,
       this.showAllNumbers = false,
       this.textScaleFactor = 1.0});

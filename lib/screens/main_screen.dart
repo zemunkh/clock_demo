@@ -8,8 +8,7 @@ import '../models/theme.dart';
 
 class MainScreen extends StatelessWidget {
 
-
-  _buildMainLayout(Orientation deviceOrientation, ThemeChanger _themeChanger) {
+  _buildMainLayout(Orientation deviceOrientation, ThemeProvider _themeProvider) {
     if(deviceOrientation == Orientation.portrait) {
       return SingleChildScrollView(
         child: Column(
@@ -17,21 +16,17 @@ class MainScreen extends StatelessWidget {
           children: <Widget>[
             WeatherView(),
             Calendar(),
-            AnalogClock(
-              isLive: true,
-              showSecondHand: true,
-              showAllNumbers: true,
-            ),
+            (_themeProvider.isDarkTheme) ? darkClock : lightClock,
             DigitalClock(
               isLive: true,
             ),
             FlatButton(
               child: Text('Dark Theme'),
-              onPressed: () => _themeChanger.setTheme(ThemeData.dark())
+              onPressed: () => _themeProvider.setThemeData(true)
             ),
             FlatButton(
               child: Text('Light Theme'),
-              onPressed: () => _themeChanger.setTheme(ThemeData.light())
+              onPressed: () => _themeProvider.setThemeData(false)
             ),
           ],
         ),
@@ -54,11 +49,11 @@ class MainScreen extends StatelessWidget {
             ),
             FlatButton(
               child: Text('Dark Theme'),
-              onPressed: () => _themeChanger.setTheme(darkTheme)
+              onPressed: () => _themeProvider.setThemeData(true)
             ),
             FlatButton(
               child: Text('Light Theme'),
-              onPressed: () => _themeChanger.setTheme(lightTheme)
+              onPressed: () => _themeProvider.setThemeData(false)
             ),
           ],
         ),
@@ -68,14 +63,33 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeChanger _themeChanger = Provider.of<ThemeChanger>(context);
+    ThemeProvider _themeProvider = Provider.of<ThemeProvider>(context);
     final layout = Center(
-      child: _buildMainLayout(MediaQuery.of(context).orientation, _themeChanger),
+      child: _buildMainLayout(MediaQuery.of(context).orientation, _themeProvider),
     );
 
     return Scaffold(
       body: layout,
     );
   }
+
+  Widget get darkClock => AnalogClock(
+    width: 250.0,
+    datetime: DateTime.now(),
+    key: GlobalObjectKey(1),
+    decoration: BoxDecoration(color: Colors.black, shape: BoxShape.circle),
+    hourHandColor: Colors.white,
+    minuteHandColor: Colors.white,
+    numberColor: Colors.white,
+    showSecondHand: true,
+    showAllNumbers: true,
+  );
+
+
+  Widget get lightClock => AnalogClock(
+      isLive: true,
+      showSecondHand: true,
+      showAllNumbers: true,
+    );
 }
 

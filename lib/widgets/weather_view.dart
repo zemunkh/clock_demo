@@ -138,15 +138,18 @@ class _WeatherViewState extends State<WeatherView> {
 
           // print("Location is granted somehow");
           var iconDir = '';
-          Weather weather = await ws.currentWeather(lat, lng);
-          iconDir = _getWeatherIcon(weather.weatherIcon);
-
-          setState(() {
-            temperature = weather.temperature.celsius.round();
-            imgDir = iconDir;
-            weatherMain = weather.weatherMain;
-          });
-          print("Weather image: $imgDir");
+          try {
+            Weather weather = await ws.currentWeather(lat, lng);
+            iconDir = _getWeatherIcon(weather.weatherIcon);
+            setState(() {
+              temperature = weather.temperature.celsius.round();
+              imgDir = iconDir;
+              weatherMain = weather.weatherMain;
+            });
+            print("Weather image: $imgDir");
+          } catch(e) {
+            print('Error: $e');
+          }
         }).catchError((err) {
           print("Error get location: $err");
         });
@@ -154,12 +157,19 @@ class _WeatherViewState extends State<WeatherView> {
       print("Location is not granted");
       lat = 47.886398;
       lng = 106.905746;
-      Weather weather = await ws.currentWeather(lat, lng);
-      setState(() {
-        temperature = weather.temperature.celsius.round();
-        weatherIcon = weather.weatherIcon;
-        weatherMain = weather.weatherMain;
-      });
+      var iconDir = '';
+      try {
+        Weather weather = await ws.currentWeather(lat, lng);
+        iconDir = _getWeatherIcon(weather.weatherIcon);
+        setState(() {
+          temperature = weather.temperature.celsius.round();
+          imgDir = iconDir;
+          weatherMain = weather.weatherMain;
+        });
+        print("Weather image: $imgDir");
+      } catch(e) {
+        print('Error: $e');
+      }
     }
   }
 
